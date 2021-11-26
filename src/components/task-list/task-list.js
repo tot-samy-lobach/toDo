@@ -4,7 +4,7 @@ import './task-list.css';
 
 const TaskList = ({ todos, onDestroy, onToggleDone }) => {
   const data = todos.map((item) => {
-    const { id, ...itemProps } = item;
+    const { id, created, ...itemProps } = item;
 
     return (
       <Task
@@ -12,6 +12,8 @@ const TaskList = ({ todos, onDestroy, onToggleDone }) => {
         onDestroy={() => onDestroy(id)}
         onToggleDone={() => onToggleDone(id)}
         key={id}
+        id={id}
+        created={created}
       />
     );
   });

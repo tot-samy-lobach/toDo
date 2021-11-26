@@ -7,14 +7,15 @@ import NewTaskForm from '../new-task-form';
 import './app.css';
 
 export default class App extends Component {
+  static defaultProps = {};
   maxId = 100;
 
   state = {
     todoData: [
-      { label: 'Drink Coffee', done: false, id: 1 },
-      { label: 'Make Awesome App', done: true, id: 2 },
-      { label: 'Have a lunch', done: false, id: 3 },
-      { label: 'Go Sleep', done: false, id: 4 },
+      { label: 'Drink Coffee', done: false, created: new Date(), id: 1 },
+      { label: 'Make Awesome App', done: false, created: new Date(), id: 2 },
+      // { label: 'Have a lunch', done: false, created: new Date(), id: 3 },
+      // { label: 'Go Sleep', done: false, created: new Date(), id: 4 },
     ],
     filter: 'all',
   };
@@ -23,6 +24,7 @@ export default class App extends Component {
     const newItem = {
       label: text,
       done: false,
+      created: new Date(),
       id: this.maxId++,
     };
 
@@ -56,6 +58,7 @@ export default class App extends Component {
 
   onToggleDone = (id) => {
     this.setState(({ todoData }) => {
+      console.log(todoData);
       const idx = todoData.findIndex((el) => el.id === id);
       const oldItem = todoData[idx];
       const newItem = { ...oldItem, done: !oldItem.done };
