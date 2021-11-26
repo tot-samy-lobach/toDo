@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import CreatedDate from '../created-date/created-date';
 
 import './task.css';
 
 export default class Task extends Component {
   render() {
-    const { label, onDestroy, onToggleDone, done } = this.props;
-
+    const { label, onDestroy, onToggleDone, done, id, created } = this.props;
     let classNames = 'todo-list-item';
 
     if (done) {
@@ -15,12 +15,15 @@ export default class Task extends Component {
     return (
       <li className={classNames}>
         <div className="view">
-          <input className="toggle" type="checkbox" />
-          <label>
-            <span className="description" onClick={onToggleDone}>
-              {label}
-            </span>
-            <span className="created">created 17 seconds ago</span>
+          <input
+            className="toggle"
+            type="checkbox"
+            id={id}
+            onClick={onToggleDone}
+          />
+          <label htmlFor={id}>
+            <span className="description">{label}</span>
+            <CreatedDate created={created} />
           </label>
           <button className="icon icon-edit"></button>
           <button className="icon icon-destroy" onClick={onDestroy}></button>
