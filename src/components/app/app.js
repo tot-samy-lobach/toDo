@@ -46,6 +46,20 @@ export default class App extends Component {
     });
   };
 
+  editItem = (id, text) => {
+    this.setState(({ todoData }) => {
+      const newTodoData = todoData.map((el) => {
+        if (el.id === id) {
+          const newItem = { ...el };
+          newItem.label = text;
+          return newItem;
+        }
+        return el;
+      });
+      return { todoData: newTodoData };
+    });
+  };
+
   deleteDoneItem = () => {
     this.setState(({ todoData }) => {
       const newTodoData = todoData.filter((el) => !el.done);
@@ -58,7 +72,6 @@ export default class App extends Component {
 
   onToggleDone = (id) => {
     this.setState(({ todoData }) => {
-      console.log(todoData);
       const idx = todoData.findIndex((el) => el.id === id);
       const oldItem = todoData[idx];
       const newItem = { ...oldItem, done: !oldItem.done };
@@ -107,6 +120,7 @@ export default class App extends Component {
             todos={visibleItems}
             onDestroy={this.deleteItem}
             onToggleDone={this.onToggleDone}
+            editItem={this.editItem}
           />
           <Footer
             toDo={countToDo}
