@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './edit-task.css';
 
 export default class EditTask extends Component {
+  static defaultProps = {
+    label: 'No name. Please, add some text',
+    hideEditTask: () => {},
+    editItem: () => {},
+  };
+
+  static propTypes = {
+    id: PropTypes.number.isRequired,
+    label: PropTypes.string.isRequired,
+    hideEditTask: PropTypes.func,
+    editItem: PropTypes.func,
+  };
+
   state = {
     newText: '',
   };
