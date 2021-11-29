@@ -9,8 +9,6 @@ export default class CreatedDate extends Component {
     created: new Date(),
   };
 
-  let test;
-
   static propTypes = {
     created: PropTypes.object,
   };
