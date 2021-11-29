@@ -7,7 +7,6 @@ import NewTaskForm from '../new-task-form';
 import './app.css';
 
 export default class App extends Component {
-  static defaultProps = {};
   maxId = 100;
 
   state = {
@@ -17,7 +16,7 @@ export default class App extends Component {
       // { label: 'Have a lunch', done: false, created: new Date(), id: 3 },
       // { label: 'Go Sleep', done: false, created: new Date(), id: 4 },
     ],
-    filter: 'all',
+    filter: '',
   };
 
   addItem = (text) => {
@@ -109,6 +108,7 @@ export default class App extends Component {
 
     const visibleItems = this.filter(todoData, filter);
     const countToDo = todoData.filter((el) => !el.done).length;
+
     return (
       <section className="todoapp">
         <header className="header">

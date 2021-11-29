@@ -1,5 +1,6 @@
 import React from 'react';
 import Task from '../task';
+import PropTypes from 'prop-types';
 import './task-list.css';
 
 const TaskList = ({ todos, onDestroy, onToggleDone, editItem }) => {
@@ -21,6 +22,20 @@ const TaskList = ({ todos, onDestroy, onToggleDone, editItem }) => {
   });
 
   return <ul className="todo-list">{data}</ul>;
+};
+
+TaskList.defaultProps = {
+  todos: [],
+  onDestroy: () => {},
+  onToggleDone: () => {},
+  editItem: () => {},
+};
+
+TaskList.propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.object),
+  onDestroy: PropTypes.func,
+  onToggleDone: PropTypes.func,
+  editItem: PropTypes.func,
 };
 
 export default TaskList;
