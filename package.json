@@ -59,9 +59,7 @@
       "npm run lint",
       "npm run lint:fix",
       "prettier  --write src/**/*.js",
-      "git add",
-      "eslint --cache --fix",
-      "prettier --write"
+      "git add"
     ]
   }
 }
