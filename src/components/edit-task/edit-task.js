@@ -11,7 +11,7 @@ export default class EditTask extends Component {
 
   static propTypes = {
     id: PropTypes.number.isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     hideEditTask: PropTypes.func,
     editItem: PropTypes.func,
   };
@@ -25,14 +25,14 @@ export default class EditTask extends Component {
     this.setState({ newText: label });
   }
 
-  changeLabel = (e) => {
+  changeLabel = (env) => {
     this.setState({
-      newText: e.target.value,
+      newText: env.target.value,
     });
   };
 
-  submitEditLabel = (e) => {
-    e.preventDefault();
+  submitEditLabel = (env) => {
+    env.preventDefault();
     this.props.editItem(this.props.id, this.state.newText);
     this.props.hideEditTask();
   };
@@ -41,13 +41,7 @@ export default class EditTask extends Component {
     const { id } = this.props;
     return (
       <form onSubmit={this.submitEditLabel} className={id}>
-        <input
-          type="text"
-          className="edit"
-          onChange={this.changeLabel}
-          value={this.state.newText}
-          autoFocus
-        />
+        <input type="text" className="edit" onChange={this.changeLabel} value={this.state.newText} autoFocus />
       </form>
     );
   }

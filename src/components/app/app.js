@@ -38,7 +38,7 @@ export default class App extends Component {
   deleteItem = (id) => {
     this.setState(({ todoData }) => {
       const idx = todoData.findIndex((el) => el.id === id);
-      const newTodoData = todoData.filter((_, index) => index !== idx);
+      const newTodoData = todoData.filter((__, index) => index !== idx);
       return {
         todoData: newTodoData,
       };
@@ -75,11 +75,7 @@ export default class App extends Component {
       const oldItem = todoData[idx];
       const newItem = { ...oldItem, done: !oldItem.done };
 
-      const newTodoData = [
-        ...todoData.slice(0, idx),
-        newItem,
-        ...todoData.splice(idx + 1),
-      ];
+      const newTodoData = [...todoData.slice(0, idx), newItem, ...todoData.splice(idx + 1)];
       return {
         todoData: newTodoData,
       };
@@ -122,12 +118,7 @@ export default class App extends Component {
             onToggleDone={this.onToggleDone}
             editItem={this.editItem}
           />
-          <Footer
-            toDo={countToDo}
-            onClear={this.deleteDoneItem}
-            filter={filter}
-            onFilterChange={this.onFilterChange}
-          />
+          <Footer toDo={countToDo} onClear={this.deleteDoneItem} filter={filter} onFilterChange={this.onFilterChange} />
         </section>
       </section>
     );
