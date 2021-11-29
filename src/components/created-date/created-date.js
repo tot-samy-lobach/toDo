@@ -13,6 +13,7 @@ export default class CreatedDate extends Component {
     created: PropTypes.object,
   };
 
+  console.log('test');
   render() {
     const { created } = this.props;
     return <span className="created">{formatDistanceToNow(created, { includeSeconds: true })}</span>;
