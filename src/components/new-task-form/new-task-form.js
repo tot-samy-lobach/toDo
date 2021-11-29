@@ -10,21 +10,25 @@ export default class NewTaskForm extends Component {
   static propTypes = {
     addItem: PropTypes.func,
   };
+
   state = {
     label: '',
   };
-  inputChange = (e) => {
+
+  inputChange = (env) => {
     this.setState({
-      label: e.target.value,
+      label: env.target.value,
     });
   };
-  addToDoItem = (e) => {
-    e.preventDefault();
+
+  addToDoItem = (env) => {
+    env.preventDefault();
     this.props.addItem(this.state.label);
     this.setState({
       label: '',
     });
   };
+
   render() {
     return (
       <form onSubmit={this.addToDoItem}>

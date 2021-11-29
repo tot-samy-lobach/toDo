@@ -8,6 +8,7 @@ export default class TasksFilter extends Component {
     { name: 'active', label: 'Active' },
     { name: 'done', label: 'Completed' },
   ];
+
   render() {
     const { filter, onFilterChange } = this.props;
     const buttons = this.buttons.map(({ name, label }) => {
@@ -18,7 +19,7 @@ export default class TasksFilter extends Component {
       }
       return (
         <li key={name}>
-          <button className={clazz} onClick={() => onFilterChange(name)}>
+          <button className={clazz} onClick={() => onFilterChange(name)} type="button">
             {label}
           </button>
         </li>
