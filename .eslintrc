@@ -31,7 +31,8 @@
     "react/destructuring-assignment": ["off"],
     "func-names": ["error", "never"],
     "jsx-a11y/control-has-associated-label": "off",
-    "jsx-a11y/no-autofocus": ["off"]
+    "jsx-a11y/no-autofocus": ["off"],
+    "jsx-a11y/no-noninteractive-element-interactions": 0
   },
   "settings": {
     "react": {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CreatedDate from '../created-date/created-date';
+import Timer from '../timer/timer';
 import EditTask from '../edit-task/edit-task';
 import './task.css';
 
@@ -17,6 +18,8 @@ export default class Task extends Component {
     onDestroy: () => {},
     onToggleDone: () => {},
     editItem: () => {},
+    min: 15,
+    sec: 0,
   };
 
   static propTypes = {
@@ -27,6 +30,8 @@ export default class Task extends Component {
     onDestroy: PropTypes.func,
     onToggleDone: PropTypes.func,
     editItem: PropTypes.func,
+    min: PropTypes.number,
+    sec: PropTypes.number,
   };
 
   state = {
@@ -42,7 +47,7 @@ export default class Task extends Component {
   };
 
   render() {
-    const { label, onDestroy, onToggleDone, done, id, created, editItem } = this.props;
+    const { label, onDestroy, onToggleDone, done, id, created, editItem, min, sec } = this.props;
     const showEdit = this.state.editTask;
 
     let classNames = 'todo-list-item';
@@ -62,6 +67,7 @@ export default class Task extends Component {
             <input className="toggle" type="checkbox" id={id} onClick={onToggleDone} />
             <label htmlFor={id}>
               <span className="description">{label}</span>
+              <Timer min={min} sec={sec} />
               <CreatedDate created={created} />
             </label>
             <button className="icon icon-edit" onClick={() => this.showEditTask(id, label)} type="button" />

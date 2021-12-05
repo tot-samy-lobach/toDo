@@ -11,20 +11,22 @@ export default class App extends Component {
 
   state = {
     todoData: [
-      { label: 'Drink Coffee', done: false, created: new Date(), id: 1 },
-      { label: 'Make Awesome App', done: false, created: new Date(), id: 2 },
+      { label: 'Drink Coffee', done: false, created: new Date(), id: 1, minutes: 15, seconds: 0 },
+      { label: 'Make Awesome App', done: false, created: new Date(), id: 2, minutes: 15, seconds: 0 },
       // { label: 'Have a lunch', done: false, created: new Date(), id: 3 },
       // { label: 'Go Sleep', done: false, created: new Date(), id: 4 },
     ],
     filter: '',
   };
 
-  addItem = (text) => {
+  addItem = (text, minutes, seconds) => {
     const newItem = {
       label: text,
       done: false,
       created: new Date(),
       id: this.maxId++,
+      min: +minutes,
+      sec: +seconds,
     };
 
     this.setState(({ todoData }) => {
