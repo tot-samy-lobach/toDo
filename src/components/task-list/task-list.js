@@ -5,7 +5,7 @@ import './task-list.css';
 
 const TaskList = function ({ todos, onDestroy, onToggleDone, editItem }) {
   const data = todos.map((item) => {
-    const { id, created, label, done } = item;
+    const { id, created, label, done, min, sec } = item;
 
     return (
       <Task
@@ -17,6 +17,8 @@ const TaskList = function ({ todos, onDestroy, onToggleDone, editItem }) {
         id={id}
         created={created}
         editItem={editItem}
+        min={min}
+        sec={sec}
       />
     );
   });

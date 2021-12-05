@@ -13,30 +13,75 @@ export default class NewTaskForm extends Component {
 
   state = {
     label: '',
+    minutes: '',
+    seconds: '',
   };
 
-  inputChange = (env) => {
+  inputLabelChange = (env) => {
     this.setState({
       label: env.target.value,
     });
   };
 
-  addToDoItem = (env) => {
-    env.preventDefault();
-    this.props.addItem(this.state.label);
+  inputMinutesChange = (env) => {
     this.setState({
-      label: '',
+      minutes: +env.target.value,
     });
+    // console.log(this.state.label, this.state.minutes, this.state.seconds);
   };
+
+  inputSecondsChange = (env) => {
+    this.setState({
+      seconds: +env.target.value,
+    });
+    // console.log(this.state.label, this.state.minutes, this.state.seconds);
+  };
+
+  onSubmitForm = (env) => {
+    if (env.key === 'Enter') {
+      // if(this.state.minutes||)
+      env.preventDefault();
+
+      this.props.addItem(this.state.label, this.state.minutes, this.state.seconds);
+      this.setState({
+        label: '',
+        minutes: '',
+        seconds: '',
+      });
+    }
+  };
+
+  // addToDoItem = (env) => {
+  //   env.preventDefault();
+
+  //   this.props.addItem(this.state.label);
+  //   this.setState({
+  //     label: '',
+  //     minutes: '',
+  //     seconds: '',
+  //   });
+  // };
 
   render() {
     return (
-      <form onSubmit={this.addToDoItem}>
+      <form onKeyPress={this.onSubmitForm} className="new-todo-form">
         <input
           className="new-todo"
           placeholder="What needs to be done?"
-          onChange={this.inputChange}
+          onChange={this.inputLabelChange}
           value={this.state.label}
+        />
+        <input
+          className="new-todo-form__timer"
+          onChange={this.inputMinutesChange}
+          placeholder="Min"
+          value={this.state.minutes}
+        />
+        <input
+          className="new-todo-form__timer"
+          onChange={this.inputSecondsChange}
+          placeholder="Sec"
+          value={this.state.seconds}
         />
       </form>
     );
