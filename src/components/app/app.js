@@ -17,7 +17,7 @@ export default class App extends Component {
       // { label: 'Have a lunch', done: false, created: new Date(), id: 3 },
       // { label: 'Go Sleep', done: false, created: new Date(), id: 4 },
     ],
-    filter: '',
+    filter: 'all',
   };
 
   addItem = (text, minutes, seconds) => {
