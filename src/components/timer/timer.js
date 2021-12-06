@@ -6,11 +6,13 @@ export default class Timer extends Component {
   static defaultProps = {
     min: 15,
     sec: 0,
+    onCheckBoxClick: () => {},
   };
 
   static propTypes = {
     min: PropTypes.number,
     sec: PropTypes.number,
+    onCheckBoxClick: PropTypes.func,
   };
 
   state = {
@@ -24,11 +26,20 @@ export default class Timer extends Component {
   }
 
   minDecrement = () => {
-    const { min } = this.state;
-    this.setState({
-      min: min - 1,
-      sec: 59,
-    });
+    const { min, sec } = this.state;
+    const { onCheckBoxClick } = this.props;
+    if (min === 0 && sec === 0) {
+      onCheckBoxClick();
+      this.setState({
+        min: 0,
+        sec: 0,
+      });
+    } else {
+      this.setState({
+        min: min - 1,
+        sec: 59,
+      });
+    }
   };
 
   secDecrement = () => {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Task from '../task';
 import './task-list.css';
 
-const TaskList = function ({ todos, onDestroy, onToggleDone, editItem }) {
+const TaskList = function ({ todos, onDestroy, onToggleDone, editItem, onCheckBoxClick }) {
   const data = todos.map((item) => {
     const { id, created, label, done, min, sec } = item;
 
@@ -17,6 +17,7 @@ const TaskList = function ({ todos, onDestroy, onToggleDone, editItem }) {
         id={id}
         created={created}
         editItem={editItem}
+        onCheckBoxClick={() => onCheckBoxClick(id)}
         min={min}
         sec={sec}
       />
@@ -30,6 +31,7 @@ TaskList.defaultProps = {
   onDestroy: () => {},
   onToggleDone: () => {},
   editItem: () => {},
+  onCheckBoxClick: () => {},
 };
 
 TaskList.propTypes = {
@@ -37,6 +39,7 @@ TaskList.propTypes = {
   onDestroy: PropTypes.func,
   onToggleDone: PropTypes.func,
   editItem: PropTypes.func,
+  onCheckBoxClick: PropTypes.func,
 };
 
 export default TaskList;

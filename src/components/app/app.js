@@ -11,8 +11,9 @@ export default class App extends Component {
 
   state = {
     todoData: [
-      { label: 'Drink Coffee', done: false, created: new Date(), id: 1, minutes: 15, seconds: 0 },
-      { label: 'Make Awesome App', done: false, created: new Date(), id: 2, minutes: 15, seconds: 0 },
+      { label: 'Drink Coffee', done: false, created: new Date(), id: 1, min: 0, sec: 2 },
+      { label: 'Make Awesome App', done: false, created: new Date(), id: 2, min: 15, sec: 0 },
+
       // { label: 'Have a lunch', done: false, created: new Date(), id: 3 },
       // { label: 'Go Sleep', done: false, created: new Date(), id: 4 },
     ],
@@ -118,6 +119,7 @@ export default class App extends Component {
             todos={visibleItems}
             onDestroy={this.deleteItem}
             onToggleDone={this.onToggleDone}
+            onCheckBoxClick={this.onToggleDone}
             editItem={this.editItem}
           />
           <Footer toDo={countToDo} onClear={this.deleteDoneItem} filter={filter} onFilterChange={this.onFilterChange} />

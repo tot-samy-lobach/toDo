@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CreatedDate from '../created-date/created-date';
-import Timer from '../timer/timer';
+import Timer from '../timer';
 import EditTask from '../edit-task/edit-task';
 import './task.css';
 
@@ -18,7 +18,8 @@ export default class Task extends Component {
     onDestroy: () => {},
     onToggleDone: () => {},
     editItem: () => {},
-    min: 15,
+    onCheckBoxClick: () => {},
+    min: 0,
     sec: 0,
   };
 
@@ -30,6 +31,7 @@ export default class Task extends Component {
     onDestroy: PropTypes.func,
     onToggleDone: PropTypes.func,
     editItem: PropTypes.func,
+    onCheckBoxClick: PropTypes.func,
     min: PropTypes.number,
     sec: PropTypes.number,
   };
@@ -47,7 +49,7 @@ export default class Task extends Component {
   };
 
   render() {
-    const { label, onDestroy, onToggleDone, done, id, created, editItem, min, sec } = this.props;
+    const { label, onDestroy, onToggleDone, done, id, created, editItem, onCheckBoxClick, min, sec } = this.props;
     const showEdit = this.state.editTask;
 
     let classNames = 'todo-list-item';
@@ -64,10 +66,10 @@ export default class Task extends Component {
       <li className={classNames}>
         {!showEdit ? (
           <div className="view">
-            <input className="toggle" type="checkbox" id={id} onClick={onToggleDone} />
+            <input className="toggle" type="checkbox" id={id} onClick={onToggleDone} checked={done} />
             <label htmlFor={id}>
               <span className="description">{label}</span>
-              <Timer min={min} sec={sec} />
+              <Timer min={min} sec={sec} onCheckBoxClick={onCheckBoxClick} />
               <CreatedDate created={created} />
             </label>
             <button className="icon icon-edit" onClick={() => this.showEditTask(id, label)} type="button" />
